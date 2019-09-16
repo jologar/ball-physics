@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonogameTest.Elements;
+using System.Collections.Generic;
 
 namespace MonogameTest
 {
@@ -10,7 +11,11 @@ namespace MonogameTest
         const float PLAYER_SPEED = 100f;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        GameElement player;
+        private List<GameElement> elements = new List<GameElement>();
+
+        private Texture2D ballTexture;
+
+        private MouseState previousMouseState;
 
         public Game1()
         {
@@ -21,19 +26,22 @@ namespace MonogameTest
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            this.previousMouseState = Mouse.GetState();
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            ballTexture = this.Content.Load<Texture2D>("ball");
+            // var ball = new GameElement();
+            // ball.Initialize(
+            //     this.Content.Load<Texture2D>("ball"),
+            //     new Vector2(
+            //         graphics.PreferredBackBufferWidth / 2,
+            //         0));  
 
-            this.player = new GameElement(
-                this.Content.Load<Texture2D>("ball"), 
-                new Vector2(
-                    graphics.PreferredBackBufferWidth / 2,
-                    graphics.PreferredBackBufferHeight / 2));         
+            // this.elements.Add(ball);
         }
 
         protected override void Update(GameTime gameTime)
@@ -41,57 +49,44 @@ namespace MonogameTest
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            var dx = 0f;
-            var dy = 0f;
-            var kstate = Keyboard.GetState();
-            if (kstate.IsKeyDown(Keys.Up)) {
-                dy = - PLAYER_SPEED * (float) gameTime.ElapsedGameTime.TotalSeconds;
+            var mouseState = Mouse.GetState();
+            if (this.previousMouseState.LeftButton == ButtonState.Released && mouseState.LeftButton == ButtonState.Pressed) {
+                // Add ball in position;
+                var ball = new GameElement();
+                var position = new Vector2(mouseState.X, mouseState.Y);
+                ball.Initialize(ballTexture, position);
+                this.elements.Add(ball);
+                System.Console.WriteLine("Left click!");
             }
-            if (kstate.IsKeyDown(Keys.Right)) {
-                dx = PLAYER_SPEED * (float) gameTime.ElapsedGameTime.TotalSeconds;
-            }
-            if (kstate.IsKeyDown(Keys.Down)) {
-                dy = PLAYER_SPEED * (float) gameTime.ElapsedGameTime.TotalSeconds;
-            }
-            if (kstate.IsKeyDown(Keys.Left)) {
-                dx = - PLAYER_SPEED * (float) gameTime.ElapsedGameTime.TotalSeconds;
-            }
+            this.previousMouseState = mouseState;
 
-            this.movePlayer(dx, dy);
+            Physics.UpdateElements(this.elements, gameTime);
 
             base.Update(gameTime);
         }
 
-        private void movePlayer(float dx, float dy) {
-            var maxX = this.graphics.PreferredBackBufferWidth - this.player.Width / 2;
-            var maxY = this.graphics.PreferredBackBufferHeight - this.player.Height / 2;
-            var newX = this.player.Position.X + dx;
-            var newY = this.player.Position.Y + dy;
-            if ((this.player.Width / 2 < newX) && (newX < maxX)) {
-                this.player.Position.X += dx;
-            }
-            if ((this.player.Height / 2 < newY) && (newY < maxY)) {
-                this.player.Position.Y += dy;
-            }     
-        }
+        // private void movePlayer(float dx, float dy) {
+            // var maxX = this.graphics.PreferredBackBufferWidth - this.ball.Width / 2;
+            // var maxY = this.graphics.PreferredBackBufferHeight - this.ball.Height / 2;
+            // var newX = this.ball.Position.X + dx;
+            // var newY = this.ball.Position.Y + dy;
+            // if ((this.ball.Width / 2 < newX) && (newX < maxX)) {
+            //     this.ball.Position.X += dx;
+            // }
+            // if ((this.ball.Height / 2 < newY) && (newY < maxY)) {
+            //     this.ball.Position.Y += dy;
+            // }     
+        // }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-            spriteBatch.Begin();
-            spriteBatch.Draw(
-                this.player.Texture, 
-                this.player.Position, 
-                null, 
-                Color.White, 
-                0f, 
-                new Vector2(this.player.Width / 2, this.player.Height / 2), 
-                Vector2.One,
-                SpriteEffects.None,
-                0f);
-            spriteBatch.End();
+            this.spriteBatch.Begin();
+            foreach (var element in this.elements) {
+                element.Draw(this.spriteBatch);
+            }
+            this.spriteBatch.End();
 
             base.Draw(gameTime);
         }

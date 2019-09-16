@@ -5,10 +5,6 @@ namespace MonogameTest.Elements
 {
     public class GameElement
     {
-        public GameElement(Texture2D texture, Vector2 position) {
-            this.Texture = texture;
-            this.Position = position; 
-        }
         public Texture2D Texture;
         public Vector2 Position;
         public Vector2 Speed;
@@ -22,6 +18,24 @@ namespace MonogameTest.Elements
         public int Height
         {
             get { return this.Texture.Height; }
+        }
+
+        public void Initialize(Texture2D texture, Vector2 position) {
+            this.Texture = texture;
+            this.Position = position;
+        }
+
+        public void Draw(SpriteBatch spriteBatch) {
+            spriteBatch.Draw(
+                this.Texture, 
+                this.Position, 
+                null, 
+                Color.White, 
+                0f, 
+                new Vector2(this.Width / 2, this.Height / 2), 
+                Vector2.One,
+                SpriteEffects.None,
+                0f);
         }
     }
 }
