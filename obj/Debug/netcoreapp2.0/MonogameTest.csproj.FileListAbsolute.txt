@@ -1,0 +1,12 @@
+/home/chemo/Development/C#/MonogameTest/bin/Debug/netcoreapp2.0/MonogameTest.deps.json
+/home/chemo/Development/C#/MonogameTest/bin/Debug/netcoreapp2.0/MonogameTest.runtimeconfig.json
+/home/chemo/Development/C#/MonogameTest/bin/Debug/netcoreapp2.0/MonogameTest.runtimeconfig.dev.json
+/home/chemo/Development/C#/MonogameTest/bin/Debug/netcoreapp2.0/MonogameTest.dll
+/home/chemo/Development/C#/MonogameTest/bin/Debug/netcoreapp2.0/MonogameTest.pdb
+/home/chemo/Development/C#/MonogameTest/obj/Debug/netcoreapp2.0/MonogameTest.csprojAssemblyReference.cache
+/home/chemo/Development/C#/MonogameTest/obj/Debug/netcoreapp2.0/MonogameTest.csproj.CoreCompileInputs.cache
+/home/chemo/Development/C#/MonogameTest/obj/Debug/netcoreapp2.0/MonogameTest.AssemblyInfoInputs.cache
+/home/chemo/Development/C#/MonogameTest/obj/Debug/netcoreapp2.0/MonogameTest.AssemblyInfo.cs
+/home/chemo/Development/C#/MonogameTest/obj/Debug/netcoreapp2.0/MonogameTest.dll
+/home/chemo/Development/C#/MonogameTest/obj/Debug/netcoreapp2.0/MonogameTest.pdb
+/home/chemo/Development/C#/MonogameTest/bin/Debug/netcoreapp2.0/Content/ball.xnb
