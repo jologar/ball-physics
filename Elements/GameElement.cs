@@ -7,8 +7,7 @@ namespace MonogameTest.Elements
     {
         public Texture2D Texture;
         public Vector2 Position;
-        public Vector2 Speed;
-        public Vector2 Acceleration;
+
 
         public int Width 
         {

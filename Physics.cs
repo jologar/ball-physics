@@ -4,30 +4,35 @@ using MonogameTest.Elements;
 
 namespace MonogameTest
 {
-    public static class Physics
+    public class Physics
     {
         private static Vector2 gravity = new Vector2(0, 9.8f);
+        private GameElementsService elementsService;
 
-        public static void UpdateElements(List<GameElement> elements, GameTime gameTime) {
-            UpdateAcceleration(elements);
-            UpdateSpeed(elements);
-            UpdatePosition(elements, gameTime);
+        public Physics(GameElementsService elementsService) {
+            this.elementsService = elementsService;
         }
 
-        private static void UpdateAcceleration(List<GameElement> elements) {
-            foreach (var element in elements) {
+        public void UpdateElements(GameTime gameTime) {
+            this.UpdateAcceleration();
+            this.UpdateSpeed();
+            this.UpdatePosition(gameTime);
+        }
+
+        private void UpdateAcceleration() {
+            foreach (var element in this.elementsService.KineticElements) {
                 element.Acceleration = gravity;
             }
         }
 
-        private static void UpdateSpeed(List<GameElement> elements) {
-            foreach (var element in elements) {
+        private void UpdateSpeed() {
+            foreach (var element in this.elementsService.KineticElements) {
                 element.Speed = element.Acceleration + element.Speed;
             }
         }
 
-        private static void UpdatePosition(List<GameElement> elements, GameTime gameTime) {
-            foreach (var element in elements) {
+        private void UpdatePosition(GameTime gameTime) {
+            foreach (var element in this.elementsService.KineticElements) {
                 var dy = element.Speed.Y * (float) gameTime.ElapsedGameTime.TotalSeconds;
                 var dx = element.Speed.X * (float) gameTime.ElapsedGameTime.TotalSeconds;
 
