@@ -10,3 +10,6 @@
 /home/chemo/Development/C#/MonogameTest/obj/Debug/netcoreapp2.0/MonogameTest.dll
 /home/chemo/Development/C#/MonogameTest/obj/Debug/netcoreapp2.0/MonogameTest.pdb
 /home/chemo/Development/C#/MonogameTest/bin/Debug/netcoreapp2.0/Content/ball.xnb
+/home/chemo/Development/C#/MonogameTest/bin/Debug/netcoreapp2.0/Content/sky.xnb
+/home/chemo/Development/C#/MonogameTest/bin/Debug/netcoreapp2.0/Content/surfaces.xnb
+/home/chemo/Development/C#/MonogameTest/bin/Debug/netcoreapp2.0/Content/clouds.xnb

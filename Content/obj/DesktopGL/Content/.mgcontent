@@ -5,5 +5,8 @@
   <Config />
   <SourceFiles>
     <File>/home/chemo/Development/C#/MonogameTest/Content/ball.png</File>
+    <File>/home/chemo/Development/C#/MonogameTest/Content/clouds.png</File>
+    <File>/home/chemo/Development/C#/MonogameTest/Content/sky.png</File>
+    <File>/home/chemo/Development/C#/MonogameTest/Content/surfaces.png</File>
   </SourceFiles>
 </SourceFileCollection>
