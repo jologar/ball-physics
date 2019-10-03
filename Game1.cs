@@ -41,13 +41,11 @@ namespace MonogameTest
             Vector2 currentPosition = new Vector2(0, this.graphics.PreferredBackBufferHeight - this.simpleGroundTextureRect.Height);
             for (var i = 0; i < groundTilesNum; i++) {
                 var ground = new GameElement();
-                ground.Initialize(SURFACES_TEXTURE_ID, currentPosition);
+                ground.Initialize(SURFACES_TEXTURE_ID, currentPosition, this.simpleGroundTextureRect);
                 this.elementsService.GameElements.Add(ground);
                 currentPosition.X += this.simpleGroundTextureRect.Width;
             }
             base.Initialize();
-            System.Console.WriteLine("buffer height: {0}", this.graphics.PreferredBackBufferHeight);
-            System.Console.WriteLine("texture height: {0}", this.simpleGroundTextureRect.Height);
         }
 
         protected override void LoadContent()
@@ -67,7 +65,7 @@ namespace MonogameTest
                 // Add ball in position;
                 var ball = new KineticElement();
                 var position = new Vector2(mouseState.X, mouseState.Y);
-                ball.Initialize(BALL_TEXTURE_ID, position);
+                ball.Initialize(BALL_TEXTURE_ID, position, this.texturesDictionary[BALL_TEXTURE_ID].Bounds);
                 this.elementsService.AddKineticElement(ball);
             }
             this.previousMouseState = mouseState;

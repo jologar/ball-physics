@@ -36,8 +36,10 @@ namespace MonogameTest
                 var dy = element.Speed.Y * (float) gameTime.ElapsedGameTime.TotalSeconds;
                 var dx = element.Speed.X * (float) gameTime.ElapsedGameTime.TotalSeconds;
 
-                element.Position.Y += dy;
-                element.Position.X += dx;
+                var position = element.Position;
+                position.Y += dy;
+                position.X += dx;
+                element.Position = position;
             }
         }
     }
